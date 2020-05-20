@@ -80,7 +80,8 @@ public class MainActivity extends AppCompatActivity {
                     // view.setText("Login Success");
                     System.out.println(response);
                     String[] name = response.split("\"");
-                    openActivity(name[7]);
+                    System.out.println(name[17]);
+                    openActivity(name[7],name[3],name[17]);
                 }
             }, new Response.ErrorListener() {
                 @Override
@@ -110,52 +111,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void openActivity(String  uname) {
+    private void openActivity(String  uname,String id, String token) {
         Intent intent = new Intent(this,Activity2.class);
         intent.putExtra("NAME",uname);
+        intent.putExtra("ID",id);
+        intent.putExtra("TOKEN",token);
         startActivity(intent);
     }
-
-    protected void getLogin() {
-        final String mURL = "http://10.0.2.2:3000/login";
-        RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
-        // Post params to be sent to the server
-        HashMap<String, String> params = new HashMap<String, String>();
-        params.put("username", username.getText().toString());
-        params.put("password", password.getText().toString());
-
-        JsonObjectRequest req = new JsonObjectRequest(mURL, new JSONObject(
-                params), new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-
-                try {
-                    JSONObject obj = response
-                            .getJSONObject("some_json_obj");
-                    view.setText("Login Succesful");
-
-                    Log.w("myApp",
-                            "status code..." + obj.getString("name"));
-
-                    // VolleyLog.v("Response:%n %s", response.toString(4));
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.w("error in response", "Error: " + error.getMessage());
-
-                view.setText(error.toString());
-            }
-        });
-
-        // add the request object to the queue to be executed
-        requestQueue.add(req);
-    }
-
 
 }
 
