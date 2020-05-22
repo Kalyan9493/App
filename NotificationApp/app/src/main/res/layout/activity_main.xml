@@ -4,19 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#95D2D5E6"
     tools:context=".MainActivity">
 
     <EditText
         android:id="@+id/username"
         android:layout_width="333dp"
         android:layout_height="74dp"
-        android:layout_marginTop="184dp"
+        android:layout_marginTop="168dp"
         android:ems="10"
         android:hint="Enter Username"
         android:inputType="textPersonName"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.446"
+        app:layout_constraintHorizontal_bias="0.423"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,15 +38,23 @@
 
     <Button
         android:id="@+id/login"
-        android:layout_width="223dp"
-        android:layout_height="89dp"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="131dp"
+        android:layout_height="49dp"
         android:layout_marginTop="85dp"
+        android:background="#65BF68"
+        android:bottomLeftRadius="10dp"
+        android:bottomRightRadius="10dp"
         android:text="Login"
-        android:textColor="#0DDF16"
-        android:textSize="36sp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@android:color/black"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:topLeftRadius="10dp"
+        android:topRightRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.442"
+        app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password"
         app:layout_constraintVertical_bias="0.0" />

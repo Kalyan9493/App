@@ -2,6 +2,7 @@ package com.example.notificationapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -17,6 +18,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,17 +34,17 @@ import java.util.List;
 import java.util.Map;
 
 import static android.net.Uri.*;
+import static com.example.notificationapp.R.layout.activity_show_notification;
 
 public class ShowNotification extends AppCompatActivity {
     TextView notification;
     private ImageView imageView;
-    private Bitmap bitmap;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_notification);
         notification = (TextView) findViewById(R.id.notification);
-        imageView = (ImageView) findViewById(R.id.imageView);
+        imageView = this.<ImageView>findViewById(R.id.imageView);
         showNotification(getIntent().getStringExtra("ID"));
     }
 
@@ -55,8 +57,13 @@ public class ShowNotification extends AppCompatActivity {
             public void onResponse(String response) {
                 try {
                     JSONObject object = new JSONObject(response);
-                    System.out.println(object.getString("imageURL"));
-                    notification.setText("Date :"+object.getString("date")+"\n\n"+"Title :\n"+object.getString("title")+"\n\n"+"Description :\n"+object.getString("description")+"\n\nDetails :\n"+object.getString("details")+"\n\nLink :\n"+object.getString("link"));
+                    if(object.has("imageURL")) {
+                        notification.setText("Date :" + object.getString("date") + "\n\n" + "Title :  " + object.getString("title") + "\n\n" + "Description :  " + object.getString("description") + "\n\nDetails :  " + object.getString("details") + "\n\nLink :  " + object.getString("link")+"\n\nImage:");
+                        String url = object.getString("imageURL").replace("localhost","10.0.2.2");
+                        Picasso.get().load(url).into(imageView);
+                    }else{
+                        notification.setText("Date :" + object.getString("date") + "\n\n" + "Title :  " + object.getString("title") + "\n\n" + "Description :  " + object.getString("description") + "\n\nDetails :  " + object.getString("details") + "\n\nLink :  " + object.getString("link"));
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
