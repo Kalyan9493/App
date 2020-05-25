@@ -3,10 +3,13 @@ package com.example.notificationapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -39,13 +42,26 @@ import static com.example.notificationapp.R.layout.activity_show_notification;
 public class ShowNotification extends AppCompatActivity {
     TextView notification;
     private ImageView imageView;
+    Button logout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_notification);
         notification = (TextView) findViewById(R.id.notification);
         imageView = this.<ImageView>findViewById(R.id.imageView);
+        logout = (Button) findViewById(R.id.logout);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openActivity();
+            }
+        });
         showNotification(getIntent().getStringExtra("ID"));
+    }
+
+    private void openActivity() {
+        Intent intent = new Intent(this,MainActivity.class);
+        startActivity(intent);
     }
 
     private void showNotification(String id) {
