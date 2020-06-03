@@ -65,7 +65,7 @@ public class ShowNotification extends AppCompatActivity {
     }
 
     private void showNotification(String id) {
-        String url = "http://10.0.2.2:3000/announcements/"+getIntent().getStringExtra("ID");
+        String url = API.api+"/announcements/"+getIntent().getStringExtra("ID");
 
         RequestQueue requestQueue = Volley.newRequestQueue(ShowNotification.this);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {

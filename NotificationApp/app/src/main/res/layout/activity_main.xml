@@ -61,8 +61,8 @@
 
     <TextView
         android:id="@+id/view"
-        android:layout_width="404dp"
-        android:layout_height="148dp"
+        android:layout_width="325dp"
+        android:layout_height="145dp"
         android:textColor="#F60A0A"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/username"

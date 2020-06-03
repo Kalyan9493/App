@@ -49,7 +49,7 @@ public class Activity2 extends AppCompatActivity {
 
 
     public void getTags(String id) {
-        String url = "http://10.0.2.2:3000/userintags/"+"\""+id+"\"";
+        String url = API.api+"/userintags/"+"\""+id+"\"";
 
         RequestQueue requestQueue = Volley.newRequestQueue(Activity2.this);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
@@ -79,7 +79,7 @@ public class Activity2 extends AppCompatActivity {
     }
 
     private void getAnnouncements(String tags) {
-        String url = "http://10.0.2.2:3000/getannouncementbytags/"+tags;
+        String url = API.api+"/getannouncementbytags/"+tags;
         RequestQueue requestQueue = Volley.newRequestQueue(Activity2.this);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override

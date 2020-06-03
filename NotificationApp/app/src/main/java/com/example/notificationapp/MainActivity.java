@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
             password.setError("Enter Password");
         } else {
 
-            String url = "http://10.0.2.2:3000/login";
+            String url = API.api+ "/login";
 
             RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
             StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void sendRegistrationToServer(final String refreshedToken) {
 
-        String url = "http://10.0.2.2:3000/devicetoken";
+        String url = API.api+"/devicetoken";
 
         RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
