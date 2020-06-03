@@ -75,7 +75,7 @@ public class ShowNotification extends AppCompatActivity {
                     JSONObject object = new JSONObject(response);
                     if(object.has("imageURL")) {
                         notification.setText("Date :" + object.getString("date") + "\n\n" + "Title :  " + object.getString("title") + "\n\n" + "Description :  " + object.getString("description") + "\n\nDetails :  " + object.getString("details") + "\n\nLink :  " + object.getString("link")+"\n\nImage:");
-                        String url = object.getString("imageURL").replace("localhost","10.0.2.2");
+                        String url = API.api+"/"+object.getString("imageURL");
                         Picasso.get().load(url).into(imageView);
                     }else{
                         notification.setText("Date :" + object.getString("date") + "\n\n" + "Title :  " + object.getString("title") + "\n\n" + "Description :  " + object.getString("description") + "\n\nDetails :  " + object.getString("details") + "\n\nLink :  " + object.getString("link"));
